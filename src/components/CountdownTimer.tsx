@@ -45,27 +45,27 @@ export default function CountdownTimer() {
   ];
 
   return (
-    <section className="py-12 px-4">
+    <section className="py-6 px-4">
       <div className="max-w-md mx-auto">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="flex justify-center gap-3"
+          className="flex justify-center items-center gap-2 sm:gap-3"
         >
           {items.map((item, index) => (
-            <div key={item.label} className="flex items-center gap-3">
+            <div key={item.label} className="flex items-center gap-2 sm:gap-3">
               <div className="flex flex-col items-center">
-                <div className="w-16 h-16 md:w-20 md:h-20 flex items-center justify-center bg-white rounded-lg shadow-sm border border-[#e8ddd0]">
-                  <span className="text-2xl md:text-3xl font-bold text-[#5c4a3a]">
+                <div className="w-16 h-16 sm:w-18 sm:h-18 flex items-center justify-center bg-white rounded-2xl shadow-sm border border-[#ece4d9]">
+                  <span className="text-2xl sm:text-3xl font-bold text-[#5c4a3a]">
                     {String(item.value).padStart(2, "0")}
                   </span>
                 </div>
-                <span className="text-[10px] md:text-xs text-[#8b7355] mt-2">{item.label}</span>
+                <span className="text-[11px] text-[#8b7355] mt-2 font-light">{item.label}</span>
               </div>
               {index < items.length - 1 && (
-                <span className="text-xl font-bold text-[#8b7355] -mt-5">:</span>
+                <span className="text-xl font-medium text-[#8b7355] -mt-5">:</span>
               )}
             </div>
           ))}
@@ -74,3 +74,4 @@ export default function CountdownTimer() {
     </section>
   );
 }
+

@@ -1,13 +1,16 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { MessageCircleHeart, Clock } from "lucide-react";
 
 interface WishItem {
+  id?: number;
   name: string;
+  attendance?: string;
   message: string;
-  time: string;
+  created_at?: string;
+  time?: string;
 }
 
 export default function RsvpForm() {
@@ -17,6 +20,7 @@ export default function RsvpForm() {
     message: "",
   });
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [errorMessage, setErrorMessage] = useState("");
   const [wishes, setWishes] = useState<WishItem[]>([
     {
       name: "Keluarga Besar",
@@ -25,24 +29,59 @@ export default function RsvpForm() {
     },
   ]);
 
+  const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://127.0.0.1:8000/api";
+
+  // Ambil daftar ucapan dari Backend Laravel saat pertama load
+  const fetchWishes = async () => {
+    try {
+      const res = await fetch(`${API_URL}/wishes`);
+      if (res.ok) {
+        const data = await res.json();
+        setWishes(data);
+      }
+    } catch (err) {
+      console.warn("Gagal terhubung ke Laravel API, menggunakan data lokal:", err);
+    }
+  };
+
+  useEffect(() => {
+    fetchWishes();
+  }, []);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!formData.name || !formData.message) return;
 
     setStatus("loading");
+    setErrorMessage("");
 
-    // Simulasi kirim data
-    setTimeout(() => {
-      const newWish: WishItem = {
-        name: formData.name,
-        message: formData.message,
-        time: "Baru saja",
-      };
-      setWishes([newWish, ...wishes]);
-      setFormData({ name: "", attendance: "Hadir", message: "" });
-      setStatus("success");
-      setTimeout(() => setStatus("idle"), 3000);
-    }, 1000);
+    try {
+      const res = await fetch(`${API_URL}/wishes`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (res.ok) {
+        const responseData = await res.json();
+        setFormData({ name: "", attendance: "Hadir", message: "" });
+        setStatus("success");
+        // Reload list ucapan dari API
+        fetchWishes();
+        setTimeout(() => setStatus("idle"), 3000);
+      } else {
+        const errData = await res.json().catch(() => null);
+        setErrorMessage(errData?.message || "Gagal mengirim ucapan ke backend.");
+        setStatus("error");
+      }
+    } catch (error) {
+      console.error("Error submitting to Laravel API:", error);
+      setErrorMessage("Tidak dapat terhubung ke server Laravel (http://127.0.0.1:8000). Pastikan php artisan serve aktif.");
+      setStatus("error");
+    }
   };
 
   return (
@@ -93,6 +132,12 @@ export default function RsvpForm() {
               placeholder="Tulis ucapan & doa"
             />
 
+            {status === "error" && (
+              <p className="text-xs text-red-500 bg-red-50 p-2 rounded border border-red-200">
+                {errorMessage}
+              </p>
+            )}
+
             <button
               type="submit"
               disabled={status === "loading" || status === "success"}
@@ -114,13 +159,30 @@ export default function RsvpForm() {
         >
           {wishes.map((wish, index) => (
             <div
-              key={index}
+              key={wish.id || index}
               className="bg-[#faf6f1] rounded-lg p-3 border border-[#e8ddd0]"
             >
-              <p className="text-sm font-bold text-[#8b7355]">{wish.name}</p>
-              <div className="flex items-center gap-1 text-[10px] text-[#b5a48f] mb-2">
+              <div className="flex items-center justify-between">
+                <p className="text-sm font-bold text-[#8b7355]">{wish.name}</p>
+                {wish.attendance && (
+                  <span className={`text-[10px] px-2 py-0.5 rounded-full ${wish.attendance === 'Hadir' ? 'bg-emerald-100 text-emerald-700' : 'bg-rose-100 text-rose-700'}`}>
+                    {wish.attendance}
+                  </span>
+                )}
+              </div>
+              <div className="flex items-center gap-1 text-[10px] text-[#b5a48f] my-1">
                 <Clock className="w-3 h-3" />
-                <span>{wish.time}</span>
+                <span>
+                  {wish.created_at
+                    ? new Date(wish.created_at).toLocaleDateString("id-ID", {
+                        day: "numeric",
+                        month: "short",
+                        year: "numeric",
+                        hour: "2-digit",
+                        minute: "2-digit",
+                      })
+                    : wish.time || "Baru saja"}
+                </span>
               </div>
               <p className="text-sm text-[#5c4a3a]">{wish.message}</p>
             </div>
@@ -130,3 +192,4 @@ export default function RsvpForm() {
     </section>
   );
 }
+

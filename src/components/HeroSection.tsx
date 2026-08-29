@@ -4,29 +4,29 @@ import { motion } from "framer-motion";
 
 export default function HeroSection() {
   return (
-    <section className="relative py-20 px-4 overflow-hidden">
-      <div className="max-w-md mx-auto text-center">
+    <section className="relative py-16 px-4 text-center overflow-hidden">
+      <div className="max-w-md mx-auto">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 1 }}
         >
-          <p className="text-sm tracking-widest text-[#8b7355] mb-4">
+          <p className="text-xs md:text-sm tracking-[0.25em] uppercase text-[#8b7355] font-medium mb-3">
             Undangan Pernikahan
           </p>
 
-          <h1 className="font-script text-5xl md:text-6xl text-[#5c4a3a] mb-4">
+          <h1 className="font-script text-5xl md:text-6xl text-[#5c4a3a] mb-6 leading-tight">
             Andi & Ocha
           </h1>
 
-          <p className="text-sm text-[#8b7355] mb-2">Sabtu</p>
-          <p className="text-sm text-[#5c4a3a] tracking-wider">17 • 10 • 2026</p>
-
-          {/* Countdown inline */}
-          <div className="flex justify-center mt-8" id="countdown-hero" />
+          <p className="text-sm font-light text-[#6b5847] mb-1">Sabtu</p>
+          <p className="text-base font-medium tracking-[0.2em] text-[#5c4a3a]">
+            17 • 10 • 2026
+          </p>
         </motion.div>
       </div>
     </section>
   );
 }
+
