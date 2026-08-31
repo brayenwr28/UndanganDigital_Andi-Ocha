@@ -12,7 +12,7 @@ export default function CoverSection({ onOpen }: CoverSectionProps) {
   const [guestName, setGuestName] = useState<string>("Tamu Undangan");
   const [loading, setLoading] = useState(false);
 
-  const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://127.0.0.1:8000/api";
+  const API_URL = process.env.NEXT_PUBLIC_API_URL || "https://undangan.musiindahlogistik.co.id/api";
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);

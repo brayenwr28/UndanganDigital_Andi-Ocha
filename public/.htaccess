@@ -1,0 +1,19 @@
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # 1. Paksa HTTPS (Redirect HTTP ke HTTPS)
+  RewriteCond %{HTTPS} off
+  RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+  # 2. Clean URLs (Akses halaman tanpa ekstensi .html)
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{REQUEST_FILENAME}\.html -f
+  RewriteRule ^(.*)$ $1.html [NC,L]
+
+  # 3. Custom 404 Error Page
+  ErrorDocument 404 /404.html
+</IfModule>
+
+# Matikan Directory Browsing demi keamanan
+Options -Indexes

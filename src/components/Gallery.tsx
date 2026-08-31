@@ -13,7 +13,8 @@ export default function Gallery() {
   const [images, setImages] = useState<string[]>(defaultImages);
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://127.0.0.1:8000/api";
+  const API_URL = process.env.NEXT_PUBLIC_API_URL || "https://undangan.musiindahlogistik.co.id/api";
+  const BASE_URL = API_URL.replace(/\/api\/?$/, "");
 
   useEffect(() => {
     const fetchGallery = async () => {
@@ -21,12 +22,11 @@ export default function Gallery() {
         const res = await fetch(`${API_URL}/galleries`);
         if (res.ok) {
           const data = await res.json();
-          // data format: [{ id: 1, image_url: "http://127.0.0.1:8000/storage/galleries/xxx.jpg" }, ...]
           if (Array.isArray(data) && data.length > 0) {
             const urls = data.map((item: { image_url?: string; url?: string; path?: string }) => {
               if (item.image_url) return item.image_url;
               if (item.url) return item.url;
-              if (item.path) return `http://127.0.0.1:8000/storage/${item.path}`;
+              if (item.path) return `${BASE_URL}/storage/${item.path}`;
               return "";
             }).filter(Boolean);
 

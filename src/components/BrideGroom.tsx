@@ -24,7 +24,7 @@ const defaultCouple: CoupleData = {
 export default function BrideGroom() {
   const [couple, setCouple] = useState<CoupleData>(defaultCouple);
 
-  const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://127.0.0.1:8000/api";
+  const API_URL = process.env.NEXT_PUBLIC_API_URL || "https://undangan.musiindahlogistik.co.id/api";
 
   useEffect(() => {
     const fetchCouple = async () => {

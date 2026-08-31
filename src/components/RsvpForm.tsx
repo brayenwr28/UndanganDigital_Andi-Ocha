@@ -29,7 +29,7 @@ export default function RsvpForm() {
     },
   ]);
 
-  const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://127.0.0.1:8000/api";
+  const API_URL = process.env.NEXT_PUBLIC_API_URL || "https://undangan.musiindahlogistik.co.id/api";
 
   // Ambil daftar ucapan dari Backend Laravel saat pertama load
   const fetchWishes = async () => {
@@ -79,7 +79,7 @@ export default function RsvpForm() {
       }
     } catch (error) {
       console.error("Error submitting to Laravel API:", error);
-      setErrorMessage("Tidak dapat terhubung ke server Laravel (http://127.0.0.1:8000). Pastikan php artisan serve aktif.");
+      setErrorMessage("Tidak dapat terhubung ke server backend. Pastikan koneksi internet Anda lancar.");
       setStatus("error");
     }
   };
