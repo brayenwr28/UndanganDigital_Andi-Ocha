@@ -6,10 +6,7 @@ import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const defaultImages = [
-  "/foto1.jpg",
-  "/foto2.jpg",
-  "/foto3.jpg",
-  "/foto4.jpg",
+  "Foto.jpg"
 ];
 
 export default function Gallery() {
