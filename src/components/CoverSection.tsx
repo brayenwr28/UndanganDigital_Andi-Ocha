@@ -87,7 +87,7 @@ export default function CoverSection({ onOpen }: CoverSectionProps) {
         >
           <p className="text-sm font-light tracking-wide mb-1 text-[#6b5847]">Sabtu</p>
           <p className="text-base font-medium tracking-[0.2em] text-[#5c4a3a]">
-            17 • 10 • 2026
+            24 • 10 • 2026
           </p>
         </motion.div>
 
@@ -112,7 +112,7 @@ export default function CoverSection({ onOpen }: CoverSectionProps) {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, delay: 1.2, type: "spring", bounce: 0.5 }}
           onClick={onOpen}
-          className="group inline-flex items-center justify-center px-8 py-2.5 text-sm font-medium text-white bg-[#ff99a8] rounded-full hover:bg-[#ff8093] transition-all hover:scale-105 active:scale-95 shadow-md"
+          className="group inline-flex items-center justify-center px-8 py-2.5 text-sm font-medium text-white bg-[#8b7355] rounded-full hover:bg-[#7a6548] transition-all hover:scale-105 active:scale-95 shadow-md"
         >
           <MailOpen className="w-4 h-4 mr-2" />
           Buka Undangan

@@ -33,7 +33,7 @@ export default function EventDetail() {
           <div className="space-y-2 text-sm text-[#5c4a3a]">
             <div className="flex items-center justify-center gap-2">
               <Calendar className="w-4 h-4 text-[#8b7355]" />
-              <span>Sabtu, 17 Oktober 2026</span>
+              <span>Sabtu, 24 Oktober 2026</span>
             </div>
             <div className="flex items-center justify-center gap-2">
               <Clock className="w-4 h-4 text-[#8b7355]" />
@@ -46,7 +46,7 @@ export default function EventDetail() {
           </div>
 
           <a
-            href="https://www.google.com/calendar/event?action=TEMPLATE&text=Akad+Nikah+Andi+%26+Ocha&dates=20261017T010000Z/20261017T030000Z&location=Jl.+Joundul+Rawang+-+Padang+Selatan+-+Blok+C/20"
+            href="https://www.google.com/calendar/event?action=TEMPLATE&text=Akad+Nikah+Andi+%26+Ocha&dates=20261024T010000Z/20261024T030000Z&location=Jl.+Joundul+Rawang+-+Padang+Selatan+-+Blok+C/20"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-block mt-4 px-5 py-2 text-xs font-medium text-white bg-[#8b7355] rounded-md hover:bg-[#7a6548] transition-colors"
@@ -74,7 +74,7 @@ export default function EventDetail() {
           <div className="space-y-2 text-sm text-[#5c4a3a]">
             <div className="flex items-center justify-center gap-2">
               <Calendar className="w-4 h-4 text-[#8b7355]" />
-              <span>Sabtu, 17 Oktober 2026</span>
+              <span>Sabtu, 24 Oktober 2026</span>
             </div>
             <div className="flex items-center justify-center gap-2">
               <Clock className="w-4 h-4 text-[#8b7355]" />
@@ -87,7 +87,7 @@ export default function EventDetail() {
           </div>
 
           <a
-            href="https://www.google.com/calendar/event?action=TEMPLATE&text=Resepsi+Andi+%26+Ocha&dates=20261017T040000Z/20261017T100000Z&location=Jl.+Joundul+Rawang+-+Padang+Selatan+-+Blok+C/20"
+            href="https://www.google.com/calendar/event?action=TEMPLATE&text=Resepsi+Andi+%26+Ocha&dates=20261024T040000Z/20261024T100000Z&location=Jl.+Joundul+Rawang+-+Padang+Selatan+-+Blok+C/20"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-block mt-4 px-5 py-2 text-xs font-medium text-white bg-[#8b7355] rounded-md hover:bg-[#7a6548] transition-colors"

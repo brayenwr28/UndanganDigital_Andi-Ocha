@@ -22,7 +22,7 @@ export default function HeroSection() {
 
           <p className="text-sm font-light text-[#6b5847] mb-1">Sabtu</p>
           <p className="text-base font-medium tracking-[0.2em] text-[#5c4a3a]">
-            17 • 10 • 2026
+            24 • 10 • 2026
           </p>
         </motion.div>
       </div>
