@@ -91,34 +91,42 @@ export default function CoverSection({ onOpen }: CoverSectionProps) {
           </p>
         </motion.div>
 
-        {/* Dynamic Guest Name Box */}
+        {/* Guest Name Section matching screenshot */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-          className="w-full bg-white/70 backdrop-blur-sm border border-[#e8ddd0] rounded-2xl p-5 my-4 shadow-sm"
+          transition={{ duration: 1, delay: 0.9 }}
+          className="mb-6 w-full"
         >
-          <p className="text-xs text-[#a08c75] font-light mb-1">
-            Kepada Yth. Bapak/Ibu/Saudara/i:
-          </p>
-          <h2 className="text-lg md:text-xl font-semibold text-[#5c4a3a] capitalize">
-            {loading ? "Memuat nama..." : guestName}
+          <p className="text-sm text-[#5c4a3a] mb-2 font-medium">Kepada Yth. Bapak/Ibu/Saudara/i</p>
+          <h2 className="text-2xl font-bold text-[#5c4a3a] mb-4">
+            {guestName || "Nama Tamu"}
           </h2>
+          <p className="text-sm text-[#5c4a3a] mb-6 leading-relaxed max-w-xs mx-auto">
+            Tanpa Mengurangi Rasa Hormat, Kami Mengundang Anda Untuk Hadir Di Acara Pernikahan Kami.
+          </p>
         </motion.div>
 
-        {/* Open Button */}
         <motion.button
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.8 }}
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8, delay: 1.2, type: "spring", bounce: 0.5 }}
           onClick={onOpen}
-          className="mt-4 inline-flex items-center justify-center px-8 py-3.5 text-sm font-medium text-white bg-[#8b7355] rounded-full hover:bg-[#7a6548] transition-all hover:scale-105 active:scale-95 shadow-md gap-2"
+          className="group inline-flex items-center justify-center px-8 py-2.5 text-sm font-medium text-white bg-[#ff99a8] rounded-full hover:bg-[#ff8093] transition-all hover:scale-105 active:scale-95 shadow-md"
         >
-          <MailOpen className="w-4 h-4" />
+          <MailOpen className="w-4 h-4 mr-2" />
           Buka Undangan
         </motion.button>
+
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1, delay: 1.5 }}
+          className="text-xs text-[#5c4a3a] mt-4 font-light"
+        >
+          Mohon maaf apabila ada kesalahan penulisan nama/gelar
+        </motion.p>
       </div>
     </motion.div>
   );
 }
-

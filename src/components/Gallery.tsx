@@ -1,54 +1,16 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import Image from "next/image";
-import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const defaultImages = [
-  "Foto.jpg"
+  "/foto1.jpg",
+  "/foto2.jpg",
+  "/foto3.jpg",
+  "/foto4.jpg",
+  "/foto5.jpg"
 ];
 
 export default function Gallery() {
-  const [images, setImages] = useState<string[]>(defaultImages);
-  const [currentIndex, setCurrentIndex] = useState(0);
-
-  const API_URL = process.env.NEXT_PUBLIC_API_URL || "https://undangan.musiindahlogistik.co.id/api";
-  const BASE_URL = API_URL.replace(/\/api\/?$/, "");
-
-  useEffect(() => {
-    const fetchGallery = async () => {
-      try {
-        const res = await fetch(`${API_URL}/galleries`);
-        if (res.ok) {
-          const data = await res.json();
-          if (Array.isArray(data) && data.length > 0) {
-            const urls = data.map((item: { image_url?: string; url?: string; path?: string }) => {
-              if (item.image_url) return item.image_url;
-              if (item.url) return item.url;
-              if (item.path) return `${BASE_URL}/storage/${item.path}`;
-              return "";
-            }).filter(Boolean);
-
-            if (urls.length > 0) {
-              setImages(urls);
-            }
-          }
-        }
-      } catch (err) {
-        console.warn("Laravel API galleries fetch fallback to default:", err);
-      }
-    };
-
-    fetchGallery();
-  }, [API_URL]);
-
-  const goTo = (index: number) => {
-    if (index < 0) setCurrentIndex(images.length - 1);
-    else if (index >= images.length) setCurrentIndex(0);
-    else setCurrentIndex(index);
-  };
-
   return (
     <section className="py-16 px-4">
       <div className="max-w-md mx-auto">
@@ -56,83 +18,93 @@ export default function Gallery() {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-8"
+          transition={{ duration: 0.8, type: "spring" }}
+          className="text-center mb-10"
         >
-          <h2 className="font-script text-4xl text-[#8b7355]">Galeri</h2>
+          <h2 className="font-script text-4xl text-[#8b7355] mb-2">Galeri Cinta</h2>
+          <p className="text-sm text-[#5c4a3a] font-light">
+            Momen bahagia yang kami abadikan
+          </p>
         </motion.div>
 
-        {/* Thumbnail Slider */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-        >
-          <div className="flex gap-2 mb-4 overflow-x-auto pb-2 justify-center">
-            {images.map((src, index) => (
-              <button
-                key={index}
-                onClick={() => setCurrentIndex(index)}
-                className={`shrink-0 w-16 h-16 rounded-md overflow-hidden border-2 transition-all ${
-                  currentIndex === index
-                    ? "border-[#8b7355] opacity-100"
-                    : "border-transparent opacity-60 hover:opacity-80"
-                }`}
-              >
-                <img
-                  src={src}
-                  alt={`Thumbnail ${index + 1}`}
-                  className="object-cover w-full h-full"
-                />
-              </button>
-            ))}
-          </div>
+        {/* Masonry / Grid Estetik */}
+        <div className="grid grid-cols-2 gap-3">
+          {/* Foto 1 - Besar di Atas */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9, y: 30 }}
+            whileInView={{ opacity: 1, scale: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, delay: 0.1 }}
+            className="col-span-2 aspect-[16/10] rounded-2xl overflow-hidden shadow-md bg-white border-4 border-white"
+          >
+            <img
+              src={defaultImages[0]}
+              alt="Galeri 1"
+              className="object-cover object-center w-full h-full hover:scale-105 transition-transform duration-700"
+            />
+          </motion.div>
 
-          {/* Main Image */}
-          <div className="relative rounded-xl overflow-hidden shadow-md bg-white">
-            <div className="relative aspect-[4/5]">
-              <img
-                src={images[currentIndex] || defaultImages[0]}
-                alt={`Gallery ${currentIndex + 1}`}
-                className="object-cover w-full h-full transition-all duration-500"
-              />
-            </div>
+          {/* Foto 2 - Kotak Kiri */}
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, delay: 0.3 }}
+            className="col-span-1 aspect-square rounded-2xl overflow-hidden shadow-md bg-white border-4 border-white"
+          >
+            <img
+              src={defaultImages[1]}
+              alt="Galeri 2"
+              className="object-cover object-center w-full h-full hover:scale-105 transition-transform duration-700"
+            />
+          </motion.div>
 
-            {/* Navigation Arrows */}
-            {images.length > 1 && (
-              <>
-                <button
-                  onClick={() => goTo(currentIndex - 1)}
-                  className="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 flex items-center justify-center bg-white/80 rounded-full shadow hover:bg-white transition-colors"
-                >
-                  <ChevronLeft className="w-4 h-4 text-[#5c4a3a]" />
-                </button>
-                <button
-                  onClick={() => goTo(currentIndex + 1)}
-                  className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 flex items-center justify-center bg-white/80 rounded-full shadow hover:bg-white transition-colors"
-                >
-                  <ChevronRight className="w-4 h-4 text-[#5c4a3a]" />
-                </button>
-              </>
-            )}
-          </div>
+          {/* Foto 3 - Kotak Kanan */}
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, delay: 0.4 }}
+            className="col-span-1 aspect-square rounded-2xl overflow-hidden shadow-md bg-white border-4 border-white"
+          >
+            <img
+              src={defaultImages[2]}
+              alt="Galeri 3"
+              className="object-cover object-center w-full h-full hover:scale-105 transition-transform duration-700"
+            />
+          </motion.div>
 
-          {/* Dots */}
-          <div className="flex justify-center gap-2 mt-4">
-            {images.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => setCurrentIndex(index)}
-                className={`w-2 h-2 rounded-full transition-all ${
-                  currentIndex === index ? "bg-[#8b7355] w-4" : "bg-[#d4c5b0]"
-                }`}
-              />
-            ))}
-          </div>
-        </motion.div>
+          {/* Foto 4 - Potrait Kiri */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, delay: 0.5 }}
+            className="col-span-1 aspect-[4/5] rounded-2xl overflow-hidden shadow-md bg-white border-4 border-white"
+          >
+            <img
+              src={defaultImages[3]}
+              alt="Galeri 4"
+              className="object-cover object-center w-full h-full hover:scale-105 transition-transform duration-700"
+            />
+          </motion.div>
+
+          {/* Foto 5 - Potrait Kanan */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, delay: 0.6 }}
+            className="col-span-1 aspect-[4/5] rounded-2xl overflow-hidden shadow-md bg-white border-4 border-white"
+          >
+            <img
+              src={defaultImages[4]}
+              alt="Galeri 5"
+              className="object-cover object-center w-full h-full hover:scale-105 transition-transform duration-700"
+            />
+          </motion.div>
+        </div>
       </div>
     </section>
   );
 }
-

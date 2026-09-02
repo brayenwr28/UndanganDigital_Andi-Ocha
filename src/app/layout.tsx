@@ -18,12 +18,9 @@ export const metadata: Metadata = {
   title: "Undangan Pernikahan Andi & Ocha",
   description: "Undangan digital pernikahan Andi Irawan, S.H., M.H & Adv. Rosna Linny, S.H., Gr — 17 Oktober 2026",
   icons: {
-    icon: [
-      { url: "/favicon.jpg", type: "image/jpeg" },
-      { url: "/icon.jpg", type: "image/jpeg" }
-    ],
-    shortcut: "/favicon.jpg",
-    apple: "/favicon.jpg",
+    icon: "/icon-cincin.png",
+    shortcut: "/icon-cincin.png",
+    apple: "/icon-cincin.png",
   },
 };
 
