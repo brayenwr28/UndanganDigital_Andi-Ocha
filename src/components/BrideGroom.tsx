@@ -30,7 +30,7 @@ export default function BrideGroom() {
           <div className="relative w-44 h-44 mx-auto mb-4 rounded-full p-1 border-2 border-[#c4b5a3] shadow-md bg-white">
             <div className="w-full h-full rounded-full overflow-hidden relative">
               <img
-                src="/sicowok.jpeg"
+                src="/groom.jpg"
                 alt="Andi Irawan, S.H., M.H"
                 className="object-cover object-top w-full h-full"
               />
@@ -68,7 +68,7 @@ export default function BrideGroom() {
           <div className="relative w-44 h-44 mx-auto mb-4 rounded-full p-1 border-2 border-[#c4b5a3] shadow-md bg-white">
             <div className="w-full h-full rounded-full overflow-hidden relative">
               <img
-                src="/sicewek.jpeg"
+                src="/bride.jpg"
                 alt="Adv. Rosna Linny, S.H., Gr"
                 className="object-cover object-top w-full h-full"
               />

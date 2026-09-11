@@ -13,6 +13,7 @@ import GiftSection from "@/components/GiftSection";
 import RsvpForm from "@/components/RsvpForm";
 import ClosingSection from "@/components/ClosingSection";
 import AudioPlayer from "@/components/AudioPlayer";
+import FallingPetals from "@/components/FallingPetals";
 import { AnimatePresence, motion } from "framer-motion";
 
 export default function Home() {
@@ -70,6 +71,9 @@ export default function Home() {
                 <circle cx="65" cy="25" r="2" fill="#8b7355" opacity="0.4"/>
               </svg>
             </div>
+
+            {/* Efek Bunga Berjatuhan */}
+            <FallingPetals />
           </motion.div>
         )}
       </AnimatePresence>
