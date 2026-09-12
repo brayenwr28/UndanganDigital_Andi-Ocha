@@ -29,18 +29,19 @@ export default function RsvpForm() {
     },
   ]);
 
-  const API_URL = process.env.NEXT_PUBLIC_API_URL || "https://undangan.musiindahlogistik.co.id/api";
+  const API_BASE = process.env.NEXT_PUBLIC_API_URL || "http://127.0.0.1:8000/api";
+  const API_URL = API_BASE.endsWith("/wishes") ? API_BASE : `${API_BASE.replace(/\/$/, "")}/wishes`;
 
-  // Ambil daftar ucapan dari Backend Laravel saat pertama load
+  // Ambil daftar ucapan dari Backend saat pertama load
   const fetchWishes = async () => {
     try {
-      const res = await fetch(`${API_URL}/wishes`);
+      const res = await fetch(API_URL);
       if (res.ok) {
         const data = await res.json();
         setWishes(data);
       }
     } catch (err) {
-      console.warn("Gagal terhubung ke Laravel API, menggunakan data lokal:", err);
+      console.warn("Gagal terhubung ke API, menggunakan data lokal:", err);
     }
   };
 
@@ -56,7 +57,7 @@ export default function RsvpForm() {
     setErrorMessage("");
 
     try {
-      const res = await fetch(`${API_URL}/wishes`, {
+      const res = await fetch(API_URL, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

@@ -14,9 +14,30 @@ export default function CoverSection({ onOpen }: CoverSectionProps) {
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const toParam = params.get("to") || params.get("guest") || params.get("n");
-    if (toParam) {
-      setGuestName(toParam);
-    }
+    if (!toParam) return;
+
+    // Fallback awal dari URL (misal "budi-santoso" -> "budi santoso")
+    const formattedFallback = decodeURIComponent(toParam).replace(/-/g, " ");
+    setGuestName(formattedFallback);
+
+    const API_BASE = process.env.NEXT_PUBLIC_API_URL || "http://127.0.0.1:8000/api";
+    const API_GUEST_URL = API_BASE.endsWith("/")
+      ? `${API_BASE}guests/${encodeURIComponent(toParam)}`
+      : `${API_BASE}/guests/${encodeURIComponent(toParam)}`;
+
+    fetch(API_GUEST_URL)
+      .then((res) => {
+        if (!res.ok) throw new Error("Gagal mengambil data tamu");
+        return res.json();
+      })
+      .then((data) => {
+        if (data && (data.name || data.nama || data.nama_tamu)) {
+          setGuestName(data.name || data.nama || data.nama_tamu);
+        }
+      })
+      .catch((err) => {
+        console.warn("Gagal mengambil data tamu dari API backend, menggunakan fallback URL:", err);
+      });
   }, []);
 
   return (
