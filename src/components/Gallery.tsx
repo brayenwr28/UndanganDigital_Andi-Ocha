@@ -22,7 +22,7 @@ export default function Gallery() {
   const [images, setImages] = useState<string[]>(defaultImages);
 
   useEffect(() => {
-    const API_BASE = process.env.NEXT_PUBLIC_API_URL || "http://127.0.0.1:8000/api";
+    const API_BASE = process.env.NEXT_PUBLIC_API_URL || "https://invit.metamedia.ac.id/api";
     const BACKEND_URL = API_BASE.replace(/\/api\/?$/, ""); // misal "http://127.0.0.1:8000"
 
     const fetchGalleries = async () => {
@@ -36,21 +36,43 @@ export default function Gallery() {
         if (list.length > 0) {
           const parsedUrls = list
             .map((item: string | GalleryItem) => {
-              if (typeof item === "string") {
-                return item.startsWith("http")
+              let imgPath =
+                typeof item === "string"
                   ? item
-                  : `${BACKEND_URL}/storage/${item.replace(/^\/?storage\//, "").replace(/^\//, "")}`;
-              }
-              const imgPath = item.image_url || item.url || item.image || item.path || "";
+                  : item.image_url || item.url || item.image || item.path || "";
               if (!imgPath) return "";
-              if (imgPath.startsWith("http")) return imgPath;
-              return `${BACKEND_URL}/storage/${imgPath.replace(/^\/?storage\//, "").replace(/^\//, "")}`;
+
+              // Jika data di DB masih mengandung localhost/127.0.0.1, ganti dengan BACKEND_URL
+              if (imgPath.includes("localhost") || imgPath.includes("127.0.0.1")) {
+                imgPath = imgPath.replace(/^https?:\/\/(localhost|127\.0\.0\.1)(:\d+)?/, BACKEND_URL);
+              }
+
+              if (imgPath.startsWith("http://") || imgPath.startsWith("https://")) {
+                // Konversi http ke https jika halaman dimuat via HTTPS (mencegah Mixed Content Block)
+                if (typeof window !== "undefined" && window.location.protocol === "https:") {
+                  return imgPath.replace(/^http:\/\//, "https://");
+                }
+                return imgPath;
+              }
+
+              // Bersihkan prefix 'public/' atau 'storage/' yang berulang
+              const cleanPath = imgPath
+                .replace(/^\/?public\//, "")
+                .replace(/^\/?storage\//, "")
+                .replace(/^\//, "");
+
+              const finalUrl = `${BACKEND_URL}/storage/${cleanPath}`;
+              if (typeof window !== "undefined" && window.location.protocol === "https:") {
+                return finalUrl.replace(/^http:\/\//, "https://");
+              }
+              return finalUrl;
             })
             .filter(Boolean);
 
-          if (parsedUrls.length > 0) {
-            setImages(parsedUrls);
-          }
+          setImages(parsedUrls);
+        } else {
+          // Jika admin mengosongkan/menghapus semua foto dari backend, kosongkan daftar foto
+          setImages([]);
         }
       } catch (err) {
         console.warn("Gagal mengambil data galeri dari API, menggunakan foto default:", err);
@@ -76,27 +98,33 @@ export default function Gallery() {
           </p>
         </motion.div>
 
-        {/* Masonry Layout Murni (Tidak memotong tinggi foto) */}
-        <div className="columns-2 gap-3 md:gap-4 space-y-3 md:space-y-4">
-          {images.map((src, idx) => (
-            <motion.div
-              key={idx}
-              initial={{ opacity: 0, scale: 0.9, y: 20 }}
-              whileInView={{ opacity: 1, scale: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: idx * 0.15 }}
-              className="break-inside-avoid bg-white p-2 md:p-3 rounded-lg shadow-sm border border-[#e8ddd0]"
-            >
-              <div className="relative rounded-md overflow-hidden">
-                <img
-                  src={src}
-                  alt={`Galeri ${idx + 1}`}
-                  className="w-full h-auto object-cover hover:scale-105 transition-transform duration-700"
-                />
-              </div>
-            </motion.div>
-          ))}
-        </div>
+        {images.length === 0 ? (
+          <p className="text-center text-sm text-[#8b7355]/70 italic py-6">
+            Belum ada foto galeri yang diunggah.
+          </p>
+        ) : (
+          /* Masonry Layout Murni (Tidak memotong tinggi foto) */
+          <div className="columns-2 gap-3 md:gap-4 space-y-3 md:space-y-4">
+            {images.map((src, idx) => (
+              <motion.div
+                key={idx}
+                initial={{ opacity: 0, scale: 0.9, y: 20 }}
+                whileInView={{ opacity: 1, scale: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: idx * 0.15 }}
+                className="break-inside-avoid bg-white p-2 md:p-3 rounded-lg shadow-sm border border-[#e8ddd0]"
+              >
+                <div className="relative rounded-md overflow-hidden">
+                  <img
+                    src={src}
+                    alt={`Galeri ${idx + 1}`}
+                    className="w-full h-auto object-cover hover:scale-105 transition-transform duration-700"
+                  />
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        )}
       </div>
     </section>
   );

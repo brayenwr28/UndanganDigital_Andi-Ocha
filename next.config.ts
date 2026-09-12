@@ -8,13 +8,11 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "127.0.0.1",
-        port: "8000",
+        hostname: "invitation.metamedia.ac.id",
       },
       {
-        protocol: "http",
-        hostname: "localhost",
-        port: "8000",
+        protocol: "https",
+        hostname: "invit.metamedia.ac.id",
       },
     ],
   },

@@ -29,7 +29,7 @@ export default function RsvpForm() {
     },
   ]);
 
-  const API_BASE = process.env.NEXT_PUBLIC_API_URL || "http://127.0.0.1:8000/api";
+  const API_BASE = process.env.NEXT_PUBLIC_API_URL || "https://invit.metamedia.ac.id/api";
   const API_URL = API_BASE.endsWith("/wishes") ? API_BASE : `${API_BASE.replace(/\/$/, "")}/wishes`;
 
   // Ambil daftar ucapan dari Backend saat pertama load
@@ -38,7 +38,10 @@ export default function RsvpForm() {
       const res = await fetch(API_URL);
       if (res.ok) {
         const data = await res.json();
-        setWishes(data);
+        const list = Array.isArray(data) ? data : (data.data || []);
+        if (list.length > 0) {
+          setWishes(list);
+        }
       }
     } catch (err) {
       console.warn("Gagal terhubung ke API, menggunakan data lokal:", err);
@@ -47,6 +50,15 @@ export default function RsvpForm() {
 
   useEffect(() => {
     fetchWishes();
+
+    if (typeof window !== "undefined") {
+      const params = new URLSearchParams(window.location.search);
+      const toParam = params.get("to") || params.get("guest") || params.get("n");
+      if (toParam) {
+        const formattedName = decodeURIComponent(toParam).replace(/-/g, " ");
+        setFormData((prev) => ({ ...prev, name: formattedName }));
+      }
+    }
   }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -68,7 +80,7 @@ export default function RsvpForm() {
 
       if (res.ok) {
         const responseData = await res.json();
-        setFormData({ name: "", attendance: "Hadir", message: "" });
+        setFormData((prev) => ({ ...prev, message: "" }));
         setStatus("success");
         // Reload list ucapan dari API
         fetchWishes();
