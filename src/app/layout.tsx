@@ -29,8 +29,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html
       lang="id"
       className={`${greatVibes.variable} ${philosopher.variable} h-full antialiased`}
+      suppressHydrationWarning
     >
-      <body className="min-h-full flex flex-col bg-[#f5f0eb] text-[#5c4a3a]" style={{ fontFamily: "var(--font-philosopher), serif" }}>{children}</body>
+      <body
+        className="min-h-full flex flex-col bg-[#f5f0eb] text-[#5c4a3a]"
+        style={{ fontFamily: "var(--font-philosopher), serif" }}
+        suppressHydrationWarning
+      >
+        {children}
+      </body>
     </html>
   );
 }
