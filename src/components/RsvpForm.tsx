@@ -28,14 +28,17 @@ export default function RsvpForm() {
       time: "Baru saja",
     },
   ]);
-
-  const API_BASE = process.env.NEXT_PUBLIC_API_URL || "https://invit.metamedia.ac.id/api";
+  // Ganti baris ini di RsvpForm.tsx:
+  const API_BASE =
+    process.env.NEXT_PUBLIC_API_URL && !process.env.NEXT_PUBLIC_API_URL.includes("localhost")
+      ? process.env.NEXT_PUBLIC_API_URL
+      : "https://invit.metamedia.ac.id/api";
   const API_URL = API_BASE.endsWith("/wishes") ? API_BASE : `${API_BASE.replace(/\/$/, "")}/wishes`;
 
   // Ambil daftar ucapan dari Backend saat pertama load
   const fetchWishes = async () => {
     try {
-      const res = await fetch(API_URL);
+      const res = await fetch(API_BASE);
       if (res.ok) {
         const data = await res.json();
         const list = Array.isArray(data) ? data : (data.data || []);
@@ -188,12 +191,12 @@ export default function RsvpForm() {
                 <span>
                   {wish.created_at
                     ? new Date(wish.created_at).toLocaleDateString("id-ID", {
-                        day: "numeric",
-                        month: "short",
-                        year: "numeric",
-                        hour: "2-digit",
-                        minute: "2-digit",
-                      })
+                      day: "numeric",
+                      month: "short",
+                      year: "numeric",
+                      hour: "2-digit",
+                      minute: "2-digit",
+                    })
                     : wish.time || "Baru saja"}
                 </span>
               </div>
