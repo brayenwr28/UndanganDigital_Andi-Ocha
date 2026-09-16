@@ -15,7 +15,7 @@ const philosopher = Philosopher({
 });
 
 export const metadata: Metadata = {
-  title: "Undangan Pernikahan Andi & Ocha",
+  title: "Undangan Pernikahan Andi & Rosna",
   description: "Undangan digital pernikahan Andi Irawan, S.H., M.H & Adv. Rosna Linny, S.H., Gr — 24 Oktober 2026",
   icons: {
     icon: "/icon-cincin.png",

@@ -81,7 +81,7 @@ export default function BrideGroom() {
             Anak Kedua
           </p>
           <p className="text-xs text-[#8b7355] font-light">
-            Putri dari Bapak Adiswan & Ibu Rosna
+            Putri dari Bapak Adiswan & Ibu Emi
           </p>
         </motion.div>
       </div>

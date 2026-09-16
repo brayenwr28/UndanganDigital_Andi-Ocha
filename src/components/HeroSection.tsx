@@ -17,7 +17,7 @@ export default function HeroSection() {
           </p>
 
           <h1 className="font-script text-5xl md:text-6xl text-[#5c4a3a] mb-6 leading-tight">
-            Andi & Ocha
+            Andi & Rosna
           </h1>
 
           <p className="text-sm font-light text-[#6b5847] mb-1">Sabtu</p>

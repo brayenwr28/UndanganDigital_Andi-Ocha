@@ -155,7 +155,7 @@ export default function CoverSection({ onOpen }: CoverSectionProps) {
           transition={{ duration: 1.2, delay: 0.8, type: "spring", bounce: 0.3 }}
           className="font-script text-5xl md:text-6xl text-[#5c4a3a] my-2 leading-tight"
         >
-          Andi & Ocha
+          Andi & Rosna
         </motion.h1>
 
         {/* Separator Line */}

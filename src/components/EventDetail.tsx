@@ -41,18 +41,17 @@ export default function EventDetail() {
             </div>
             <div className="flex items-start justify-center gap-2">
               <MapPin className="w-4 h-4 text-[#8b7355] shrink-0 mt-0.5" />
-              <span>Kediaman Keluarga<br />Jl. Joundul Rawang - Padang Selatan - Blok C/20</span>
+              <span>Kediaman Keluarga<br />Jl. Jondul Rawang - Padang Selatan - Blok C/20</span>
             </div>
           </div>
 
           <a
-            href="https://www.google.com/calendar/event?action=TEMPLATE&text=Akad+Nikah+Andi+%26+Ocha&dates=20261024T010000Z/20261024T030000Z&location=Jl.+Joundul+Rawang+-+Padang+Selatan+-+Blok+C/20"
+            href="https://www.google.com/calendar/event?action=TEMPLATE&text=Akad+Nikah+Andi+%26+Rosna&dates=20261024T010000Z/20261024T030000Z&location=Jl.+Jondul+Rawang+-+Padang+Selatan+-+Blok+C/20"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-block mt-4 px-5 py-2 text-xs font-medium text-white bg-[#8b7355] rounded-md hover:bg-[#7a6548] transition-colors"
           >
-            <Calendar className="w-3 h-3 inline mr-1 -mt-0.5" />
-            Simpan Tanggal
+            Simpan ke Kalender
           </a>
         </motion.div>
 
@@ -67,9 +66,12 @@ export default function EventDetail() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.4 }}
-          className="bg-white rounded-xl p-6 mb-6 shadow-sm text-center"
+          className="bg-white p-8 rounded-2xl shadow-sm border border-[#e8ddd0] text-center"
         >
-          <h3 className="text-lg font-bold text-[#5c4a3a] mb-4">Resepsi</h3>
+          <div className="w-12 h-12 mx-auto bg-[#f5f0eb] rounded-full flex items-center justify-center mb-4">
+            <MapPin className="w-6 h-6 text-[#8b7355]" />
+          </div>
+          <h3 className="font-script text-3xl text-[#5c4a3a] mb-4">Resepsi</h3>
 
           <div className="space-y-2 text-sm text-[#5c4a3a]">
             <div className="flex items-center justify-center gap-2">
@@ -78,16 +80,16 @@ export default function EventDetail() {
             </div>
             <div className="flex items-center justify-center gap-2">
               <Clock className="w-4 h-4 text-[#8b7355]" />
-              <span>8.00 WIB - Selesai</span>
+              <span>11.00 WIB - Selesai</span>
             </div>
-            <div className="flex items-start justify-center gap-2">
-              <MapPin className="w-4 h-4 text-[#8b7355] shrink-0 mt-0.5" />
-              <span>Kediaman Keluarga<br />Jl. Joundul Rawang - Padang Selatan - Blok C/20</span>
+            <div className="flex items-center justify-center gap-2 mt-4">
+              <MapPin className="w-4 h-4 text-[#8b7355]" />
+              <span>Kediaman Keluarga<br />Jl. Jondul Rawang - Padang Selatan - Blok C/20</span>
             </div>
           </div>
 
           <a
-            href="https://www.google.com/calendar/event?action=TEMPLATE&text=Resepsi+Andi+%26+Ocha&dates=20261024T040000Z/20261024T100000Z&location=Jl.+Joundul+Rawang+-+Padang+Selatan+-+Blok+C/20"
+            href="https://www.google.com/calendar/event?action=TEMPLATE&text=Resepsi+Andi+%26+Rosna&dates=20261024T040000Z/20261024T100000Z&location=Jl.+Jondul+Rawang+-+Padang+Selatan+-+Blok+C/20"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-block mt-4 px-5 py-2 text-xs font-medium text-white bg-[#8b7355] rounded-md hover:bg-[#7a6548] transition-colors"
