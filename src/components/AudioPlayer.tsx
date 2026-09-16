@@ -25,7 +25,7 @@ export default function AudioPlayer({ isPlaying, togglePlay }: AudioPlayerProps)
   return (
     <>
       <audio ref={audioRef} loop>
-        <source src="/music.mp3?v=2" type="audio/mpeg" />
+        <source src="/music.mp3?v=3" type="audio/mpeg" />
       </audio>
 
       <motion.button
