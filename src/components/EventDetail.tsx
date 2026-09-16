@@ -80,7 +80,7 @@ export default function EventDetail() {
             </div>
             <div className="flex items-center justify-center gap-2">
               <Clock className="w-4 h-4 text-[#8b7355]" />
-              <span>11.00 WIB - Selesai</span>
+              <span>10.00 WIB - Selesai</span>
             </div>
             <div className="flex items-center justify-center gap-2 mt-4">
               <MapPin className="w-4 h-4 text-[#8b7355]" />
