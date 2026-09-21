@@ -38,12 +38,25 @@ export default function RsvpForm() {
   // Ambil daftar ucapan dari Backend saat pertama load
   const fetchWishes = async () => {
     try {
-      const res = await fetch(API_BASE);
+      const res = await fetch(API_URL, {
+        cache: "no-store",
+        headers: {
+          Accept: "application/json",
+        },
+      });
       if (res.ok) {
         const data = await res.json();
         const list = Array.isArray(data) ? data : (data.data || []);
         if (list.length > 0) {
-          setWishes(list);
+          const formattedList = list.map((item: any) => ({
+            id: item.id,
+            name: item.name || item.nama || "Tamu",
+            attendance: item.attendance || item.kehadiran || "",
+            message: item.message || item.pesan || item.ucapan || "",
+            created_at: item.created_at || item.createdAt,
+            time: item.time,
+          }));
+          setWishes(formattedList);
         }
       }
     } catch (err) {
@@ -86,7 +99,7 @@ export default function RsvpForm() {
         setFormData((prev) => ({ ...prev, message: "" }));
         setStatus("success");
         // Reload list ucapan dari API
-        fetchWishes();
+        await fetchWishes();
         setTimeout(() => setStatus("idle"), 3000);
       } else {
         const errData = await res.json().catch(() => null);
