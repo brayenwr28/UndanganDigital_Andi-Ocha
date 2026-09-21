@@ -20,7 +20,7 @@ export default function CoverSection({ onOpen }: CoverSectionProps) {
     const formattedFallback = decodeURIComponent(toParam).replace(/-/g, " ");
     setGuestName(formattedFallback);
 
-    const API_BASE = process.env.NEXT_PUBLIC_API_URL || "https://invit.metamedia.ac.id/api";
+    const API_BASE = process.env.NEXT_PUBLIC_API_URL || "https://undangan.musiindahlogistik.co.id/api";
     const API_GUEST_URL = API_BASE.endsWith("/")
       ? `${API_BASE}guests/${encodeURIComponent(toParam)}`
       : `${API_BASE}/guests/${encodeURIComponent(toParam)}`;

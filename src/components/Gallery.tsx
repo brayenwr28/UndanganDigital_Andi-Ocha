@@ -22,7 +22,7 @@ export default function Gallery() {
   const [images, setImages] = useState<string[]>(defaultImages);
 
   useEffect(() => {
-    const API_BASE = process.env.NEXT_PUBLIC_API_URL || "https://invit.metamedia.ac.id/api";
+    const API_BASE = process.env.NEXT_PUBLIC_API_URL || "https://undangan.musiindahlogistik.co.id/api";
     const BACKEND_URL = API_BASE.replace(/\/api\/?$/, ""); // misal "http://127.0.0.1:8000"
 
     const fetchGalleries = async () => {

@@ -32,7 +32,7 @@ export default function RsvpForm() {
   const API_BASE =
     process.env.NEXT_PUBLIC_API_URL && !process.env.NEXT_PUBLIC_API_URL.includes("localhost")
       ? process.env.NEXT_PUBLIC_API_URL
-      : "https://invit.metamedia.ac.id/api";
+      : "https://undangan.musiindahlogistik.co.id/api";
   const API_URL = API_BASE.endsWith("/wishes") ? API_BASE : `${API_BASE.replace(/\/$/, "")}/wishes`;
 
   // Ambil daftar ucapan dari Backend saat pertama load

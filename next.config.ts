@@ -8,6 +8,14 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: "https",
+        hostname: "invitation.musiindahlogistik.co.id",
+      },
+      {
+        protocol: "https",
+        hostname: "undangan.musiindahlogistik.co.id",
+      },
+      {
+        protocol: "https",
         hostname: "invitation.metamedia.ac.id",
       },
       {
