@@ -9,14 +9,14 @@ export default function StorySection() {
     {
       date: "8 Januari 2026",
       title: "Awal Sebuah Pertemuan",
-      desc: "Semua bermula ketika Andi dan Rosna dipertemukan dalam sebuah proses taaruf di Masjid. Sebuah pertemuan yang sederhana, namun menjadi awal dari perjalanan panjang yang tidak pernah mereka sangka sebelumnya.",
+      desc: "Semua bermula ketika Andi dan Ocha dipertemukan dalam sebuah proses taaruf di Masjid. Sebuah pertemuan yang sederhana, namun menjadi awal dari perjalanan panjang yang tidak pernah mereka sangka sebelumnya.",
       type: "image",
       img: "/Awal.png",
     },
     {
       date: "Bulan Ramadhan",
       title: "Nadzor & Pertemuan Keluarga",
-      desc: "Perjalanan berlanjut ke tahap nadzor. Di bulan Ramadhan, Andi bertemu dengan keluarga besar Rosna. Andi hadir menjadi imam shalat berjamaah dan turut mendoakan kesembuhan Rosna. Momen ini menjadi gambaran bahwa hubungan ini dibangun bukan hanya dengan rasa, tetapi juga dengan doa dan ketaatan.",
+      desc: "Perjalanan berlanjut ke tahap nadzor. Di bulan Ramadhan, Andi bertemu dengan keluarga besar Ocha. Andi hadir menjadi imam shalat berjamaah dan turut mendoakan kesembuhan Ocha. Momen ini menjadi gambaran bahwa hubungan ini dibangun bukan hanya dengan rasa, tetapi juga dengan doa dan ketaatan.",
       type: "image",
       img: "/kedua.png",
     },
@@ -30,7 +30,7 @@ export default function StorySection() {
     {
       date: "Khitbah",
       title: "Sebuah Keberanian",
-      desc: "Andi kembali memberanikan diri melangkah lebih jauh. Dengan niat yang jelas, ia menemui orang tua Rosna. Langkah itu bukan sekadar meminta izin, tetapi bentuk keberanian seorang laki-laki menunjukkan keseriusannya untuk memperjuangkan keluarga perempuan.",
+      desc: "Andi kembali memberanikan diri melangkah lebih jauh. Dengan niat yang jelas, ia menemui orang tua Ocha. Langkah itu bukan sekadar meminta izin, tetapi bentuk keberanian seorang laki-laki menunjukkan keseriusannya untuk memperjuangkan keluarga perempuan.",
       type: "image",
       img: "/ketiga.jpg",
     },
@@ -44,7 +44,7 @@ export default function StorySection() {
     {
       date: "24 Oktober 2026",
       title: "Hari Bahagia",
-      desc: "Setelah melewati setiap tahapan dengan penuh keyakinan dan doa, akhirnya hari yang dinantikan tiba. Andi dan Rosna siap melangkah bersama dalam ikatan suci yang diberkahi Allah SWT. Semoga menjadi keluarga sakinah, mawaddah, wa rahmah.",
+      desc: "Setelah melewati setiap tahapan dengan penuh keyakinan dan doa, akhirnya hari yang dinantikan tiba. Andi dan Ocha siap melangkah bersama dalam ikatan suci yang diberkahi Allah SWT. Semoga menjadi keluarga sakinah, mawaddah, wa rahmah.",
       type: "image",
       img: "/keenam.jpg",
     },
@@ -62,7 +62,7 @@ export default function StorySection() {
         >
           <h2 className="font-script text-4xl text-[#8b7355] mb-2">Kisah Cinta</h2>
           <p className="text-sm text-[#5c4a3a]">
-            Perjalanan Andi & Rosna
+            Perjalanan Andi & Ocha
           </p>
         </motion.div>
 

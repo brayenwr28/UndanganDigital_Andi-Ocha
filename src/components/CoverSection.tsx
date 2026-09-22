@@ -153,9 +153,9 @@ export default function CoverSection({ onOpen }: CoverSectionProps) {
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1.2, delay: 0.8, type: "spring", bounce: 0.3 }}
-          className="font-script text-5xl md:text-6xl text-[#5c4a3a] my-2 leading-tight"
+          className="font-script text-4xl md:text-5xl text-[#5c4a3a] my-2 leading-tight whitespace-nowrap"
         >
-          Andi & Rosna
+          Andi & Linny (Ocha)
         </motion.h1>
 
         {/* Separator Line */}

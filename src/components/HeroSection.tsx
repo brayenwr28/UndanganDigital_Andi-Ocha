@@ -16,8 +16,8 @@ export default function HeroSection() {
             Undangan Pernikahan
           </p>
 
-          <h1 className="font-script text-5xl md:text-6xl text-[#5c4a3a] mb-6 leading-tight">
-            Andi & Rosna
+          <h1 className="font-script text-4xl md:text-5xl text-[#5c4a3a] mb-6 leading-tight whitespace-nowrap">
+            Andi & Linny (Ocha)
           </h1>
 
           <p className="text-sm font-light text-[#6b5847] mb-1">Sabtu</p>

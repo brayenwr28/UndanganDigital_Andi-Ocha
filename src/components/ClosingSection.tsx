@@ -24,7 +24,7 @@ export default function ClosingSection() {
           <p className="text-sm italic text-[#8b7355] mb-2">Wassalamu&apos;alaikum Wr. Wb.</p>
 
           <h2 className="font-script text-3xl text-[#5c4a3a] mt-6">
-            Andi & Rosna
+            Andi & Linny (Ocha)
           </h2>
         </motion.div>
       </div>
@@ -32,7 +32,7 @@ export default function ClosingSection() {
       {/* Footer */}
       <div className="mt-16 pt-6 border-t border-[#e8ddd0] text-center">
         <p className="text-xs text-[#b5a48f]">
-          Made with ❤️ for Andi & Rosna
+          Made with ❤️ for Andi & Linny (Ocha)
         </p>
       </div>
     </section>
