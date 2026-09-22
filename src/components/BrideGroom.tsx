@@ -43,7 +43,7 @@ export default function BrideGroom() {
             Anak Keempat
           </p>
           <p className="text-xs text-[#8b7355] font-light">
-            Putra dari Bapak irianto & Ibu Nurleli (Almarhumah)
+            Putra dari Bapak Irianto & Ibu Nurleli (Almarhumah)
           </p>
         </motion.div>
 
