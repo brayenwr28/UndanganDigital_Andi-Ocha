@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import { Great_Vibes, Philosopher } from "next/font/google";
+import { Parisienne, Philosopher } from "next/font/google";
 import "./globals.css";
 
-const greatVibes = Great_Vibes({
-  variable: "--font-great-vibes",
+const parisienne = Parisienne({
+  variable: "--font-parisienne",
   subsets: ["latin"],
   weight: "400",
 });
@@ -26,11 +26,11 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html
-      lang="id"
-      className={`${greatVibes.variable} ${philosopher.variable} h-full antialiased`}
-      suppressHydrationWarning
-    >
+      <html
+        lang="id"
+        className={`${parisienne.variable} ${philosopher.variable} h-full antialiased`}
+        suppressHydrationWarning
+      >
       <body
         className="min-h-full flex flex-col bg-[#f5f0eb] text-[#5c4a3a]"
         style={{ fontFamily: "var(--font-philosopher), serif" }}
